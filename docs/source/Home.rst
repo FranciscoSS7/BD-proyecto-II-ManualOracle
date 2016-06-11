@@ -1,18 +1,16 @@
 .. figure:: nstatic/logo-una.png
    :align: center
-   :scale: 10 %
+   :scale: 40 %
 
 
 
 **Curso: Diseño e implementación de bases de datos**
 ------------------------------------------------------
 
-**Documentación Proyecto III**
--------------------------------
+**Proyecto II: Manual técnico base de datos Oracle**
 
 
 Estudiantes
-^^^^^^^^^^^^^^^^^^^^^
 
 - Francisco Sánchez Salas
 
