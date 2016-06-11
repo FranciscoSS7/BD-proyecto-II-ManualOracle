@@ -51,7 +51,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'proyecto2manualBDoracle'
+project = 'Bases de Datos I | Proyecto II'
 copyright = '2016, Francisco'
 author = 'Francisco'
 
