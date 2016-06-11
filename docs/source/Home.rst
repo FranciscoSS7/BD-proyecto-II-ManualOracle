@@ -1,8 +1,10 @@
+Home
+=====================================
+
+
 .. figure:: nstatic/logo-una.png
    :align: center
    :scale: 25 %
-
-=====================================
 
 **Escuela de Informática**
 
