@@ -1,16 +1,18 @@
 .. figure:: nstatic/logo-una.png
    :align: center
-   :scale: 40 %
+   :scale: 33 %
 
 
+
+**Escuela de Informática**
 
 **Curso: Diseño e implementación de bases de datos**
-------------------------------------------------------
+
 
 **Proyecto II: Manual técnico base de datos Oracle**
 
 
-Estudiantes
+**Estudiantes**
 
 - Francisco Sánchez Salas
 
