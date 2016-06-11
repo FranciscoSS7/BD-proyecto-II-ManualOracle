@@ -1,5 +1,6 @@
 .. figure:: nstatic/logo-una.png
    :align: center
+   :scale: 50 %
 
 
 
