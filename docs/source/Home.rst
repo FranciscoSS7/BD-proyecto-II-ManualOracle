@@ -1,8 +1,6 @@
 .. figure:: nstatic/logo-una.png
    :align: center
-   :scale: 33 %
-
-
+   :scale: 30 %
 
 **Escuela de Informática**
 
