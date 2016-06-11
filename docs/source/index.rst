@@ -11,8 +11,8 @@ Contenidos:
 .. toctree::
    :maxdepth: 2
 
-   Arquitectura física
-   Arquitectura lógica
+   Arquitectura fosica
+   Arquitectura logica
    Modelo de datos
    Componentes PLsql
 
