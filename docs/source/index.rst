@@ -11,6 +11,7 @@ Contenidos:
 .. toctree::
    :maxdepth: 2
 
+   Home
    Arquitectura fisica
    Arquitectura logica
    Modelo de datos
