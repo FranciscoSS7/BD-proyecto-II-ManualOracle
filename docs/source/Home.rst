@@ -1,6 +1,8 @@
 .. figure:: nstatic/logo-una.png
    :align: center
-   :scale: 30 %
+   :scale: 25 %
+
+=====================================
 
 **Escuela de Informática**
 
@@ -20,6 +22,8 @@
 
 - Daniel Quesada Sandí
 
+
 **Profesor:** Johnny Villalobos Murillo
+
 
 *Universidad Nacional, Campus Benjamín Nuñez, Primer Ciclo, 2016*
