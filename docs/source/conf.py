@@ -48,7 +48,7 @@ source_suffix = '.rst'
 # source_encoding = 'utf-8-sig'
 
 # The master toctree document.
-master_doc = 'index'
+master_doc = 'Home'
 
 # General information about the project.
 project = 'Bases de Datos I | Proyecto II'
