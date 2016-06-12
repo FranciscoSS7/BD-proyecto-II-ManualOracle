@@ -15,4 +15,5 @@ Contenidos:
    Arquitectura fisica
    Arquitectura logica
    Modelo de datos
+   Componentes PLsql
    Recomendaciones
