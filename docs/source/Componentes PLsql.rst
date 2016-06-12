@@ -207,7 +207,8 @@ Para explicar este procedimiento se debe crear la siguiente.
 
 **Función Sumatoria**
 
-La siguiente función es una función almacenada que se encarga de realizar una sumatoria de la multiplicación hecha entre  dos valores de dos tablas  en este caso de las tablas t1 y t2, esta es una función muy utilizada en bases de datos que requieren cálculos diarios en bases de datos de ventas de muchas empresas. Retomando también un poco lo que es el identificador de la función se le asignó SF_001 en donde más adelante se podrá ver como se seguirá utilizando el prefijo SF_  para otra función almacenada.
+La siguiente función es una función almacenada que se encarga de realizar una sumatoria de la multiplicación hecha entre  dos valores de dos tablas  en este caso de las tablas t1 y t2, esta es una función muy utilizada en bases de datos que requieren cálculos diarios en bases de datos de ventas de muchas empresas. Retomando también un poco lo que es el identificador de la función se le asignó SF_001 en donde más adelante se podrá ver como se seguirá utilizando el prefijo ``SF_`` para otra función almacenada.
+
 ::
 
  create or replace function SF_001(x integer) 
@@ -227,6 +228,7 @@ La siguiente función es una función almacenada que se encarga de realizar una 
 **Función Suma Valor**
 
 La siguiente función es una función almacenada que se encarga de realizar una sumatoria de un valor en la tabla  t2, esta función es similar a la anterior con la diferencia de  que es una sumatoria de la suma del valor de la columna  e de la tabla t2  respectivamente,  lo cual es una práctica utilizada para realizar cálculos por ejemplo de la suma de las ventas por un vendedor en un mes dado. De manera similar a la función anterior  el identificador de la función que se le asignó es SF_002 manteniendo la política de nombres.
+
 ::
  
  create or replace function SF_002(x integer) 
@@ -242,10 +244,7 @@ La siguiente función es una función almacenada que se encarga de realizar una 
  end; 
  /
 
-
-
 A continuación se dará una referencia de como documentar las funciones almacenadas en un catálogo de funciones. Además de documentar de manera digital este catálogo también se debe documentar a nivel de la base datos mediante la creación de una tabla específicamente hecha para esta documentación de las funciones almacenadas.
-
 
 .. figure:: nstatic/imgPlsq4.jpg
    :align: center
@@ -254,12 +253,14 @@ A continuación se dará una referencia de como documentar las funciones almacen
 **Triggers**
 --------------
 ^^^^^^^^^^^^^^
+
 En este apartado se mostrará como crean un trigger y también la manera recomendada de documentarlos.
 
 La siguientes tablas se crearán para ayudar al desarrollo y almacenamiento respectivamente en el trigger que será explicado en el siguiente punto.
+
 ::
 
- Créate table t3(
+ Create table t3(
  X int ,
  Y int
  );
@@ -276,6 +277,7 @@ La siguientes tablas se crearán para ayudar al desarrollo y almacenamiento resp
  Trigger  Bitacora TR_001
 
 El siguiente trigger tiene como función insertar la información necesaria en la tabla bitácora. Así con dicha información en la tabla bitácora será de gran ayuda para un rollback en la base de datos o también una función aún más importante la de realizar un redo log   o copia de seguridad de las transacciones hechas en la base de datos y así colaborar en una eventual pérdida de información. Para los triggers el prefijo utilizado es ``TR_`` seguido por un  consecutivo.
+
 ::
 
  create or replace trigger TR_001
@@ -284,11 +286,11 @@ El siguiente trigger tiene como función insertar la información necesaria en l
  for each row
  begin
  IF INSERTING then
- insert into bitacora ( oldX , oldY , newX , newY , fechaHora , accion) values (:old.x , :old.y   , :new.x , :new.y ,  sysdate  , 'insert' );
+ insert into bitacora ( oldX , oldY , newX , newY , fechaHora , accion) values (:old.x , :old.y    , :new.x , :new.y ,  sysdate  , 'insert' );
  ElSIF UPDATING then
- insert into bitacora ( oldX , oldY , newX , newY , fechaHora , accion) values (:old.x , :old.y  , :new.x , :new.y ,  sysdate   , 'update' );
+ insert into bitacora ( oldX , oldY , newX , newY , fechaHora , accion) values (:old.x , :old.y   , :new.x , :new.y ,  sysdate   , 'update' );
  ELSE
- insert into bitacora ( oldX , oldY , newX , newY , fechaHora , accion) values(:old.x, :old.y,  :new.x,:new.y,  sysdate , 'delete');
+ insert into bitacora ( oldX , oldY , newX , newY , fechaHora , accion) values(:old.x, :old.y,   :new.x,:new.y,  sysdate , 'delete');
  END IF;
  end;
  /
@@ -308,7 +310,3 @@ En este último apartado se hará un ejemplo de cómo se podría realizar un cat
    :align: center
 
 La idea de crear este catálogo general de los componentes PL/SQL nace a partir del punto de simular una estructura similar al diccionario de datos, sin embargo la función de este catálogo es la de facilitar el acceso de información a los administradores de bases de datos el acceso a esta información ya que por ejemplos si necesitan saber el número de catálogos  de los componentes PL/SQL creados para la base de datos basta con realizar la consulta a la base de datos.
-
-
-
-
