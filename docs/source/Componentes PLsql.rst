@@ -7,7 +7,7 @@ En esta sección del manual se definen algunos conceptos básicos pero muy impor
 
 **Construyendo bloques de programas PL/SQL**
 
-PL/SQL es un lenguaje estructurado con bloques. Un bloque PL/SQL es definido por las palabras clave DECLARE, BEGIN, EXCEPTION, y END, que dividen el bloque en tres secciones
+PL/SQL es un lenguaje estructurado con bloques. Un bloque PL/SQL es definido por las palabras clave ``DECLARE``, ``BEGIN``, ``EXCEPTION``, y ``END``, que dividen el bloque en tres secciones
 
 **1. Declarativa**: sentencias que declaran variables, constantes y otros elementos de código, que después pueden ser usados dentro del bloque
 
@@ -50,20 +50,20 @@ Unidades que se pueden programar en una base de datos Oracle:
 
 PL/SQL proporciona una variedad de tipos de datos para especificar el formato de almacenamiento, restricciones y rango de valores válidos de constantes y variables.A continuación una lista de los tipos de datos más comunes:
 
-•	NUMBER (numérico): Almacena números enteros o de punto flotante..
+•	``NUMBER`` (numérico): Almacena números enteros o de punto flotante..
 
 
-•	CHAR (carácter): Almacena datos de tipo carácter con un tamaño máximo de 32.767 bytes y cuyo valor de longitud por defecto es 1.
+•	*CHAR* (carácter): Almacena datos de tipo carácter con un tamaño máximo de 32.767 bytes y cuyo valor de longitud por defecto es 1.
 
 
-•	VARCHAR2 (carácter de longitud variable): Almacena datos de tipo carácter empleando sólo la cantidad necesaria aun cuando la longitud máxima sea mayor.
+•	``VARCHAR2`` (carácter de longitud variable): Almacena datos de tipo carácter empleando sólo la cantidad necesaria aun cuando la longitud máxima sea mayor.
 
-•	BOOLEAN (lógico): Almacena valores TRUE o FALSE.
+•	``BOOLEAN`` (lógico): Almacena valores TRUE o FALSE.
 
 
-•	DATE (fecha): Almacena datos de tipo fecha. Las fechas se almacenan internamente como datos numéricos, por lo cual se puede realizar operaciones aritméticas con ellas.
+•	``DATE`` (fecha): Almacena datos de tipo fecha. Las fechas se almacenan internamente como datos numéricos, por lo cual se puede realizar operaciones aritméticas con ellas.
 
-•	Atributos de tipo. Un atributo de tipo PL/SQL es un modificador que puede ser usado para obtener información de un objeto de la base de datos. El atributo %TYPE permite conocer el tipo de una variable, constante o campo de la base de datos. El atributo %ROWTYPE permite obtener los tipos de todos los campos de una tabla de la base de datos, de una vista o de un cursor.
+•	Atributos de tipo. Un atributo de tipo PL/SQL es un modificador que puede ser usado para obtener información de un objeto de la base de datos. El atributo ``%TYPE`` permite conocer el tipo de una variable, constante o campo de la base de datos. El atributo ``%ROWTYPE`` permite obtener los tipos de todos los campos de una tabla de la base de datos, de una vista o de un cursor.
 
 **Nombres en una base Oracle**
 
@@ -105,7 +105,7 @@ Estas mismas reglas aplican a los nombres de los objetos de base de datos como t
 **Procedimientos Almacenados**
 
 A continuación se muestran algunos procesos almacenados básicos pero que en en este caso funcionan para ejemplificar como se debería dar la documentación de los mismos.
-A la hora de crear los procesos almacenados es muy importante la identificación de los  mismos es preferible que se utilice un prefijo  en el identificador similar para todos  los procesos almacenados, así como también para funciones y triggers esto por ayudará  en el mantenimiento de la base de datos ya que facilitará las búsquedas de los mismos cuando se requieran hacer auditorias o sea necesario reparar un problema que se esté dando. Para estos ejemplos  se utilizará el e siguiente prefijo SP  el cual ira seguido por un consecutivo por ejemplo SP001 y SP002 y así sucesivamente claro está que esta escogencia del prefijo quedará a cargo de los creadores de la base de datos.
+A la hora de crear los procesos almacenados es muy importante la identificación de los  mismos es preferible que se utilice un prefijo  en el identificador similar para todos  los procesos almacenados, así como también para funciones y triggers esto por ayudará  en el mantenimiento de la base de datos ya que facilitará las búsquedas de los mismos cuando se requieran hacer auditorias o sea necesario reparar un problema que se esté dando. Para estos ejemplos  se utilizará el e siguiente prefijo SP  el cual ira seguido por un consecutivo por ejemplo ``SP001`` y ``SP002`` y así sucesivamente claro está que esta escogencia del prefijo quedará a cargo de los creadores de la base de datos.
 
 La siguiente es una tabla llamada T1 la cual se usará para ejemplificar el desarrollo de algunos procedimientos almacenados los cuales a su vez modificarán el contenido de sus registros.
 ::
@@ -117,7 +117,7 @@ La siguiente es una tabla llamada T1 la cual se usará para ejemplificar el desa
 
 **Insertar**
 
-El siguiente método se utilizará para insertar  registros dentro base de datos, en este caso específicamente en la tabla t1 , se utiliza la recomendación anteriormente mencionada sobre la asignación del identificador utilizado para el proceso almacenado en este caso se utiliza SP001 más adelante en los siguientes procesos se podrá ver como se continua con un prefijo de nombre similar para los demás procesos.
+El siguiente método se utilizará para insertar  registros dentro base de datos, en este caso específicamente en la tabla t1 , se utiliza la recomendación anteriormente mencionada sobre la asignación del identificador utilizado para el proceso almacenado en este caso se utiliza ``SP001`` más adelante en los siguientes procesos se podrá ver como se continua con un prefijo de nombre similar para los demás procesos.
 
 ::
 
@@ -138,7 +138,7 @@ Ejemplo:
 
 **Actualizar**
 
-El siguiente método se utilizará para realizar una actualización  algún registro dentro base de datos, en este caso específicamente al atributo a con el valor igual a 1 de la tabla T1 para este caso el nombre que se le asigna es SP002  continuando así con la secuencia de nombres asignados.
+El siguiente método se utilizará para realizar una actualización  algún registro dentro base de datos, en este caso específicamente al atributo a con el valor igual a 1 de la tabla T1 para este caso el nombre que se le asigna es ``SP002``  continuando así con la secuencia de nombres asignados.
 ::
 
  create or replace Procedure SP002 ( x int )
@@ -152,7 +152,7 @@ El siguiente método se utilizará para realizar una actualización  algún regi
 
 **Eliminar**
 
-El siguiente método se utilizará para eliminar  algún dato dentro base de datos, en este caso específicamente al atributo a con el valor igual a la variable x la cuál le es enviada por parámetro. También como en los casos anteriores  se le asigna el mismo prefijo pero con diferente consecutivo SP003.
+El siguiente método se utilizará para eliminar  algún dato dentro base de datos, en este caso específicamente al atributo a con el valor igual a la variable x la cuál le es enviada por parámetro. También como en los casos anteriores  se le asigna el mismo prefijo pero con diferente consecutivo ``SP003``.
 ::
 
  create or replace Procedure SP003 ( x int )
@@ -161,8 +161,6 @@ El siguiente método se utilizará para eliminar  algún dato dentro base de dat
  Delete from t1 where a = x;
  Commit;
  End;
-
-
 
 
 
