@@ -224,3 +224,20 @@ El siguiente trigger tiene como función insertar la información necesaria en l
 
 A continuación se dará una referencia de como documentar los triggers en un catálogo. Además de documentar de manera digital este catálogo también se debe documentar a nivel de la base datos mediante la creación de una tabla específicamente hecha para esta documentación de  los triggers creados.
 
+.. figure:: nstatic/imgPlsql1.jpg
+   :align: center
+
+**Catálogo General**
+-----------------------
+^^^^^^^^^^^^^^^^^^^^^^^
+
+En este último apartado se hará un ejemplo de cómo se podría realizar un catálogo general que contenga la información general de los catálogos de PL/SQL con los que cuenta la base de datos. Así mismo para ayudar a la identificación de los mismo se recomienda la utilización de un prefijo similar para todos por ejemplo en este caso se utilizará  ``ctbd1_`` seguido por el nombre de catálogo. También es importante como en los catálogos anteriores aparte de mantener este catálogo.
+
+.. figure:: nstatic/imgPlsql2.jpg
+   :align: center
+
+La idea de crear este catálogo general de los componentes PL/SQL nace a partir del punto de simular una estructura similar al diccionario de datos, sin embargo la función de este catálogo es la de facilitar el acceso de información a los administradores de bases de datos el acceso a esta información ya que por ejemplos si necesitan saber el número de catálogos  de los componentes PL/SQL creados para la base de datos basta con realizar la consulta a la base de datos.
+
+
+
+
