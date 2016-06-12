@@ -175,3 +175,52 @@ El siguiente método se utilizará para eliminar  algún dato dentro base de dat
 
 
 A continuación se dará una referencia de como documentar los procedimientos almacenados el cual también se podrá usar para documentar otros componentes como funciones almacenadas y triggers mediante un catálogo de objetos para este primer caso será un catálogo de procedimientos almacenados. Además de documentar de manera digital este catálogo también se debe documentar a nivel de la base datos mediante la creación de una tabla específicamente hecha para esta documentación de los procesos almacenados.
+
+.. figure:: nstatic/imgPlsql.jpg
+   :align: center
+
+
+**Triggers**
+--------------
+^^^^^^^^^^^^^^
+En este apartado se mostrará como crean un trigger y también la manera recomendada de documentarlos.
+
+La siguientes tablas se crearán para ayudar al desarrollo y almacenamiento respectivamente en el trigger que será explicado en el siguiente punto.
+::
+
+ Créate table t3(
+ X int ,
+ Y int
+ );
+
+ create table bitacora(
+ oldX int,
+ oldY int,
+ newX int,
+ newY int,
+ fechahora date,
+ accion varchar(20)
+ );
+ 
+ Trigger  Bitacora TR_001
+
+El siguiente trigger tiene como función insertar la información necesaria en la tabla bitácora. Así con dicha información en la tabla bitácora será de gran ayuda para un rollback en la base de datos o también una función aún más importante la de realizar un redo log   o copia de seguridad de las transacciones hechas en la base de datos y así colaborar en una eventual pérdida de información. Para los triggers el prefijo utilizado es ``TR_`` seguido por un  consecutivo.
+::
+
+ create or replace trigger TR_001
+ after insert or update or delete
+ on t3
+ for each row
+ begin
+ IF INSERTING then
+ insert into bitacora ( oldX , oldY , newX , newY , fechaHora , accion) values (:old.x , :old.y   , :new.x , :new.y ,  sysdate  , 'insert' );
+ ElSIF UPDATING then
+ insert into bitacora ( oldX , oldY , newX , newY , fechaHora , accion) values (:old.x , :old.y  , :new.x , :new.y ,  sysdate   , 'update' );
+ ELSE
+ insert into bitacora ( oldX , oldY , newX , newY , fechaHora , accion) values(:old.x, :old.y,  :new.x,:new.y,  sysdate , 'delete');
+ END IF;
+ end;
+ /
+
+A continuación se dará una referencia de como documentar los triggers en un catálogo. Además de documentar de manera digital este catálogo también se debe documentar a nivel de la base datos mediante la creación de una tabla específicamente hecha para esta documentación de  los triggers creados.
+
