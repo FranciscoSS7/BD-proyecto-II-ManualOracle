@@ -176,7 +176,79 @@ El siguiente método se utilizará para eliminar  algún dato dentro base de dat
 
 A continuación se dará una referencia de como documentar los procedimientos almacenados el cual también se podrá usar para documentar otros componentes como funciones almacenadas y triggers mediante un catálogo de objetos para este primer caso será un catálogo de procedimientos almacenados. Además de documentar de manera digital este catálogo también se debe documentar a nivel de la base datos mediante la creación de una tabla específicamente hecha para esta documentación de los procesos almacenados.
 
-.. figure:: nstatic/imgPlsql.jpg
+.. figure:: nstatic/imgPlsq3.jpg
+   :align: center
+
+
+Ahora se procederá a explicar cada una de las columnas de este recuadro y los valores que contienen las filas.
+
+- Paquete: Indica el nombre de la base de datos a la cual pertenece.
+- Identificador: Es el nombre asignado al proceso almacenado para identificarlo.
+- Parámetros: Contiene los parámetros del proceso así como el tipo de cada uno.
+- Versión: Lo cual indica como su nombre lo dice que versión del procedimiento.
+- Responsable: La columna responsable muestra quien es el responsable de dar mantenimiento a este procedimiento.
+- Detalles: Detalla un poco más fondo cuál es la función principal del procedimiento almacenado.
+
+
+**Funciones Almacenadas**
+-------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Ahora se procederá a explicar un poco del proceso de la creación y documentación de funciones almacenadas en la base datos el cuál es muy similar al anterior.
+
+Para explicar este procedimiento se debe crear la siguiente.
+::
+
+ Create table  t2(
+ d int,
+ e int,
+ f int
+ );
+
+
+**Función Sumatoria**
+
+La siguiente función es una función almacenada que se encarga de realizar una sumatoria de la multiplicación hecha entre  dos valores de dos tablas  en este caso de las tablas t1 y t2, esta es una función muy utilizada en bases de datos que requieren cálculos diarios en bases de datos de ventas de muchas empresas. Retomando también un poco lo que es el identificador de la función se le asignó SF_001 en donde más adelante se podrá ver como se seguirá utilizando el prefijo SF_  para otra función almacenada.
+::
+
+ create or replace function SF_001(x integer) 
+ return float 
+ is  
+ resultado float; 
+ begin 
+ select sum(T1.a * T2.d) 
+ into resultado
+ from  T1, T2
+ where T1.a= x ;
+ return resultado; 
+ end; 
+ /
+
+
+**Función Suma Valor**
+
+La siguiente función es una función almacenada que se encarga de realizar una sumatoria de un valor en la tabla  t2, esta función es similar a la anterior con la diferencia de  que es una sumatoria de la suma del valor de la columna  e de la tabla t2  respectivamente,  lo cual es una práctica utilizada para realizar cálculos por ejemplo de la suma de las ventas por un vendedor en un mes dado. De manera similar a la función anterior  el identificador de la función que se le asignó es SF_002 manteniendo la política de nombres.
+::
+ 
+ create or replace function SF_002(x integer) 
+ return float 
+ is 
+ resultado float; 
+ begin 
+ select sum(T2.e)  
+ into resultado
+ from  T2
+ where T2.d= x ;
+ return resultado; 
+ end; 
+ /
+
+
+
+A continuación se dará una referencia de como documentar las funciones almacenadas en un catálogo de funciones. Además de documentar de manera digital este catálogo también se debe documentar a nivel de la base datos mediante la creación de una tabla específicamente hecha para esta documentación de las funciones almacenadas.
+
+
+.. figure:: nstatic/imgPlsq4.jpg
    :align: center
 
 
