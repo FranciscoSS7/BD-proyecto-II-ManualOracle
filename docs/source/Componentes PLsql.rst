@@ -182,7 +182,7 @@ A continuación se dará una referencia de como documentar los procedimientos al
 
 Ahora se procederá a explicar cada una de las columnas de este recuadro y los valores que contienen las filas.
 
-- Paquete: Indica el nombre de la base de datos a la cual pertenece.
+- Paquete: Indica el nombre del paquete donde se van a guardar subprogramas y otros objetos de la base de datos (los procedimientos y funciones).
 - Identificador: Es el nombre asignado al proceso almacenado para identificarlo.
 - Parámetros: Contiene los parámetros del proceso así como el tipo de cada uno.
 - Versión: Lo cual indica como su nombre lo dice que versión del procedimiento.
@@ -299,6 +299,29 @@ A continuación se dará una referencia de como documentar los triggers en un ca
 
 .. figure:: nstatic/imgPlsql1.jpg
    :align: center
+
+
+Los procedimientos almacenados y funciones se guardaran en paquetes (``package``). Es necesario distribuir nuestros procesos funciones y procedimientos en paquetes para dar una mejor estructura al proyecto en el que estamos trabajando, para empezar un paquete tiene dos niveles (Declaración y Cuerpo), en la declaración solo declaramos los procedimientos y funciones con sus parámetros. En el cuerpo desarrollamos el código de nuestros procedimientos y funciones.
+Por ejemplo:
+
+::
+
+ CREATE OR REPLACE PACKAGE BD1 AS 
+   Procedure SP001 (x int , y int  , z int);
+   Procedure SP002 ( x int );
+   Procedure SP003 ( x int );
+
+   SF_001(x integer);
+   SF_002(x integer);
+ END BD1;
+ /
+
+Ahora veremos como llamar a los procedimientos o funciones dentro de dicho paquete:
+::
+
+ BD1.SP001(3,4,5);
+ BD1.SF_001(7);
+
 
 **Catálogo General**
 -----------------------
