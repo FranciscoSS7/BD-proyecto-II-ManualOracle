@@ -176,7 +176,7 @@ El siguiente método se utilizará para eliminar  algún dato dentro base de dat
 
 A continuación se dará una referencia de como documentar los procedimientos almacenados el cual también se podrá usar para documentar otros componentes como funciones almacenadas y triggers mediante un catálogo de objetos para este primer caso será un catálogo de procedimientos almacenados. Además de documentar de manera digital este catálogo también se debe documentar a nivel de la base datos mediante la creación de una tabla específicamente hecha para esta documentación de los procesos almacenados.
 
-.. figure:: nstatic/imgPlsq3.jpg
+.. figure:: nstatic/imgPlsql3.jpg
    :align: center
 
 
