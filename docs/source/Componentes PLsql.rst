@@ -246,7 +246,7 @@ La siguiente función es una función almacenada que se encarga de realizar una 
 
 A continuación se dará una referencia de como documentar las funciones almacenadas en un catálogo de funciones. Además de documentar de manera digital este catálogo también se debe documentar a nivel de la base datos mediante la creación de una tabla específicamente hecha para esta documentación de las funciones almacenadas.
 
-.. figure:: nstatic/imgPlsq4.jpg
+.. figure:: nstatic/imgPlsql4.jpg
    :align: center
 
 
