@@ -16,3 +16,4 @@ Contenidos:
    Arquitectura logica
    Modelo de datos
    Componentes PLsql
+   Recomendaciones
