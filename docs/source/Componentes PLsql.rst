@@ -311,8 +311,8 @@ Por ejemplo:
    Procedure SP002 ( x int );
    Procedure SP003 ( x int );
 
-   SF_001(x integer);
-   SF_002(x integer);
+   function SF_001(x integer);
+   function SF_002(x integer);
  END BD1;
  /
 
