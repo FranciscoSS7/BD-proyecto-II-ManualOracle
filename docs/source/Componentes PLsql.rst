@@ -189,10 +189,9 @@ Ahora se procederá a explicar cada una de las columnas de este recuadro y los v
 - Responsable: La columna responsable muestra quien es el responsable de dar mantenimiento a este procedimiento.
 - Detalles: Detalla un poco más fondo cuál es la función principal del procedimiento almacenado.
 
-
 **Funciones Almacenadas**
--------------------------------
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Ahora se procederá a explicar un poco del proceso de la creación y documentación de funciones almacenadas en la base datos el cuál es muy similar al anterior.
 
