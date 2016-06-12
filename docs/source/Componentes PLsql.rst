@@ -6,6 +6,8 @@ En esta sección del manual se definen algunos conceptos básicos pero muy impor
 **PL/SQL**  es el lenguaje de programación que proporciona Oracle para extender el SQL estándar con otro tipo de instrucciones y elementos propios de los lenguajes de programación.
 
 **Construyendo bloques de programas PL/SQL**
+---------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 PL/SQL es un lenguaje estructurado con bloques. Un bloque PL/SQL es definido por las palabras clave ``DECLARE``, ``BEGIN``, ``EXCEPTION``, y ``END``, que dividen el bloque en tres secciones
 
@@ -24,6 +26,8 @@ Unidades que se pueden programar en una base de datos Oracle:
 
 
 **Conceptos Básicos**
+-----------------------
+^^^^^^^^^^^^^^^^^^^^^^^
 
 **•	DELIMITADOR:** Es un símbolo, simple o compuesto, que tiene una función especial en PL/SQL:
 
@@ -47,6 +51,8 @@ Unidades que se pueden programar en una base de datos Oracle:
 
 
 **Tipos de Datos**
+-------------------
+^^^^^^^^^^^^^^^^^^^
 
 PL/SQL proporciona una variedad de tipos de datos para especificar el formato de almacenamiento, restricciones y rango de valores válidos de constantes y variables.A continuación una lista de los tipos de datos más comunes:
 
@@ -66,6 +72,8 @@ PL/SQL proporciona una variedad de tipos de datos para especificar el formato de
 •	Atributos de tipo. Un atributo de tipo PL/SQL es un modificador que puede ser usado para obtener información de un objeto de la base de datos. El atributo ``%TYPE`` permite conocer el tipo de una variable, constante o campo de la base de datos. El atributo ``%ROWTYPE`` permite obtener los tipos de todos los campos de una tabla de la base de datos, de una vista o de un cursor.
 
 **Nombres en una base Oracle**
+-------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Estas son las reglas para construir identificadores válidos en una base Oracle:
 
@@ -103,6 +111,8 @@ Para ofrecer más flexibilidad, Oracle permite evitar las restricciones de la se
 Estas mismas reglas aplican a los nombres de los objetos de base de datos como tablas, vistas y procedimientos, con una regla adicional: a menos que se encierren entre comillas los nombres de estos objetos, Oracle los mantendrá en mayúsculas.
 
 **Procedimientos Almacenados**
+-------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 A continuación se muestran algunos procesos almacenados básicos pero que en en este caso funcionan para ejemplificar como se debería dar la documentación de los mismos.
 A la hora de crear los procesos almacenados es muy importante la identificación de los  mismos es preferible que se utilice un prefijo  en el identificador similar para todos  los procesos almacenados, así como también para funciones y triggers esto por ayudará  en el mantenimiento de la base de datos ya que facilitará las búsquedas de los mismos cuando se requieran hacer auditorias o sea necesario reparar un problema que se esté dando. Para estos ejemplos  se utilizará el e siguiente prefijo SP  el cual ira seguido por un consecutivo por ejemplo ``SP001`` y ``SP002`` y así sucesivamente claro está que esta escogencia del prefijo quedará a cargo de los creadores de la base de datos.
@@ -161,7 +171,6 @@ El siguiente método se utilizará para eliminar  algún dato dentro base de dat
  Delete from t1 where a = x;
  Commit;
  End;
-
 
 
 
