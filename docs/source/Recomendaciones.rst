@@ -77,6 +77,8 @@ A partir de esta sentencia SQL se hará la optimización.
  )alias6  
  WHERE k1 = k5_2;
 
+Nota: Para la optimización se utilizó el software RAT (Relational Algebra Translator), el cual es muy recomendado para generación de la sentececia en álgebra relacional a partir de una consulta. El software se puede obtener en el siguiente enlace http://www.slinfo.una.ac.cr/rat/rat.html
+
 
 
 
