@@ -327,3 +327,4 @@ A continuación se dan las pautas para realizar la documentación de la arquitec
 5.	Documentar las fórmulas o estándar que se decida seguir utilizando después de implementado la base de datos para realizar las estimaciones de espacio.
 6.	Finalmente se recomienda estar  actualizando la documentación de la arquitectura lógica cada vez que se cree un tablespace nuevo o se realiza cualquier otro cambio en  la arquitectura lógica.
 
+
