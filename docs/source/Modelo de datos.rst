@@ -400,3 +400,4 @@ Una ventaja clara para las bases de datos relacionales al normalizarse es la opt
 
 
 
+
