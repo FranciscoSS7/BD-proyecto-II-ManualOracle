@@ -154,7 +154,7 @@ A continuación se muestra la distribución de tablespace que se designa para la
 •	Temp 
 •	Rollback
 •	Indices
-•	Data 
+•	Datos
 
 .. figure:: nstatic/ImgArquiLogica3.jpg
    :align: center
@@ -193,9 +193,80 @@ El tablespace rollback será utilizado para almacenar todas las bitácoras corre
 
 Este tablespace será destinado a los índices de tablas. También es importante tomar en cuenta que los índices crecen en tamaño en mayor proporción que las tablas asociadas si los datos en la tabla son modificados frecuentemente. La gestión del espacio es mejor si se mantienen los índices de tablas grandes en espacios de tablas separados.
 
-**Data**
+**Datos**
 
 Este tablespace  se utilizara para almacenar los registros de todas las tablas almacenadas en la base de datos. Dado el crecimiento de la cantidad de registros por tabla es recomendable prever un espacio grande para el datafile que se encuentre relacionado a este tablespace.
+
+
+**Cálculo de los tamaños de los tablespaces**
+
+Hay que considerar que los tablespace corresponden a una agrupación lógica, se refiere a cómo se distribuye una base de datos de manera lógica, la memoria que utiliza y cómo se maneja. Es bueno saber que tanto espacio va a ocupar un tablespace en la memoria, así que vamos a calcular el espacio que ocupa.
+
+Primeramente, tenemos que tener un diagrama relacional.
+
+Para este caso vamos a contar con 2 Entidades.
+
+En este caso se cuenta con E1(a, b, c), donde son de tipo (Integer, Char, Char) respectivamente. E2(s, a), donde son de tipo (Integer, Integer) respectivamente. 
+
+El tamaño de un atributo tipo Integer es de 4 bytes y el tamaño de un atributo tipo Char es de 1 byte por carácter hasta 255 caracteres.
+
+.. figure:: nstatic/ImgArquiLogica4.jpg
+   :align: center
+
+Lo primero que se debe hacer es calcular el tamaño de la tupla, eso se hace multiplicando cada dato por su tipo. 
+
+Ejemplo:
+
+E1 (a = 4, b = ‘ABC’, c = ‘QR’) y E2 (s = 3, a = 4), ahora lo que hay que hacer es calcular el tamaño de la tupla.
+
+Para E1:	Er1 = (1*4) + (3*1) + (2*1) = 9 bytes
+
+Para E2:	Er2 = (1*4) + (1*4) = 8 bytes
+
+Además, hay que considerar la tasa de transacción (T-T) de las entidades E1 y E2, donde es 25,000 transacciones por día de E1 y 38.000 transacciones por día de E2. Ahora se debe multiplicar las TrN con las tasas de transacción de cada entidad, con eso se calcula la cantidad de bytes que se usan por día.
+
+Para E1: 	Tr1 -> 9 * 25,000 = 225000 bytes 
+
+Para E2:	Tr2 -> 8 * 38,000 = 304000 bytes
+
+Se deben sumar los tamaños de las transacciones totales para saber la cantidad de bytes que se consumen por día.
+
+Tr1 + Tr2 = 529000 bytes
+
+Además, se requiere también incluir las llaves primarias y foráneas de cada tabla de la relación. Hay que calcular para cada llave primaria y llave foránea su cantidad en bytes, la posición que es una dirección y la llave en si. Donde para E1 se tiene sólo una llave primaria que es ‘a’, su tipo es Integer lo cual representa 4 bytes y en la posición de memoria que ocupa, su apuntador es un long integer que ocupa 16 bytes. En el caso de E2 se tiene una primaria y foránea, para cada una su tipo es integer y su posición es long integer. 
+
+Ahora se calcula el tamaño de las llaves con sus posiciones en memoria (LM)
+
+Ejemplo: 
+
+::
+ 
+ E1 → LlavesE1 (PK, posición) →  a(Integer) + long integer
+ 	= 4 bytes + 16 bytes = 20 bytes
+ Total de E1 20 bytes.
+ E2 → LlavesE2 (PK, posición) → s(int) + long integer
+ 	4 bytes + 16 bytes = 20 bytes
+    				   → a(int) + long integer
+  	4 bytes + 16 bytes = 20 bytes
+
+Como son 2 llaves ocupa 40 bytes en total.
+
+Ya una vez calculados los tamaños de las transacciones y sus llaves, se debe hacer un estimado del espacio que puede llegar a ocupar, para este cálculo hay que considerar que las bases de datos relacionales de Oracle estiman que se debe aumentar en un 35% del cálculo para ocupar mejor los recursos y recalcular periódicamente las transacciones.
+
+La fórmula sería: (Tamaño de la tupla * T-T) + ( LM * t.t * 0.35) 
+
+Para E1:
+
+ (9 * 25000) + (20 * 25000 * 0.35) = 400000 bytes
+
+Para E2:
+
+(8 * 38000) + (40 + 38000 * 0.35) = 317340 bytes
+
+Estos resultados en total nos dan el espacio estimado de los tablespace que se consumiría por día.
+
+400000 + 317340 = 717340 bytes / día.
+
 
 
 A continuación algunos otros datos importantes en relación a los tablespaces.
@@ -241,3 +312,18 @@ El concepto de Data block es un concepto físico, pero de una distribución lóg
 El soporte de paginación en las bases de datos Oracle aumenta el desempeño de las aplicaciones de base de datos de mucha memoria, especialmente en los casos en que el caché de buffer tiene varios gigabytes de tamaño, las CPU en el sistema podrán acceder más rápidamente a los buffers en la base de datos.
 
 Ya que los bloques de datos representan la mínima unidad de almacenamiento que es capaz de manejar Oracle. En un disco duro no es posible que un fichero pequeño ocupe menos de lo que indique la unidad de asignación, así si la unidad de asignación es de 4 Kb, ya que así fue asignado por quien creó los ficheros, un fichero que ocupe 1 Kb en realidad ocupa 4 Kb. 
+
+
+**Estándar de documentación**
+-------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+A continuación se dan las pautas para realizar la documentación de la arquitectura lógica
+
+1.	Iniciar en una introducción  que contiene la documentación de la arquitectura lógica.
+2.	Realizar un  gráfico de pastel para representar la división que se hizo de los tablespaces y asignar un color diferente para cada tablespace e indicar el nombre de cada tablespace.
+3.	Especificar cada tablespace, esta especificación debe contener sus nombres, cuales datos serán almacenados y también indicar a cual datafile se encuentra asociado o en caso de que sean varios indicar cuales.
+4.	Documentar como  fueron calculados los espacios de disco la primera vez cuales fueron los criterios y fórmulas utilizadas para realizar los cálculos.
+5.	Documentar las fórmulas o estándar que se decida seguir utilizando después de implementado la base de datos para realizar las estimaciones de espacio.
+6.	Finalmente se recomienda estar  actualizando la documentación de la arquitectura lógica cada vez que se cree un tablespace nuevo o se realiza cualquier otro cambio en  la arquitectura lógica.
+
