@@ -133,19 +133,20 @@ El siguiente método se utilizará para insertar  registros dentro base de datos
 
 ::
 
- create or replace Procedure SP001 (x int , y int  , z int) 
+ CREATE OR REPLACE PROCEDURE SP001 (X INT , Y   INT  , Z INT) 
  AS
  BEGIN
- INSERT into t1 (a,b,c) values(x,y,z);
- Commit;
+ INSERT INTO T1 (A,B,C) VALUES(X,Y,Z);
+ COMMIT;
  END;
  /
+
 
 Es importante no olvidar que después de escribir el procedimiento almacenado para finalizar la operación se coloca un  / y para ejecutar un proceso se utiliza execute nombre del Proceso (variable tipo).
 Ejemplo:
 ::
 
- execute  SP001(1,2,3);
+ EXECUTE  SP001(1,2,3);
 
 
 **Actualizar**
@@ -153,13 +154,14 @@ Ejemplo:
 El siguiente método se utilizará para realizar una actualización  algún registro dentro base de datos, en este caso específicamente al atributo a con el valor igual a 1 de la tabla T1 para este caso el nombre que se le asigna es ``SP002``  continuando así con la secuencia de nombres asignados.
 ::
 
- create or replace Procedure SP002 ( x int )
- As
- Begin
- Update T1 set a = x
- where a = 1;
- Commit;
- End;
+ CREATE OR REPLACE PROCEDURE SP002 ( X INT )
+ AS
+ BEGIN
+ UPDATE T1 SET A = X
+ WHERE A = 1;
+ COMMIT;
+ END;
+
 
 
 **Eliminar**
@@ -167,12 +169,13 @@ El siguiente método se utilizará para realizar una actualización  algún regi
 El siguiente método se utilizará para eliminar  algún dato dentro base de datos, en este caso específicamente al atributo a con el valor igual a la variable x la cuál le es enviada por parámetro. También como en los casos anteriores  se le asigna el mismo prefijo pero con diferente consecutivo ``SP003``.
 ::
 
- create or replace Procedure SP003 ( x int )
- As 
- Begin 
- Delete from t1 where a = x;
- Commit;
- End;
+ CREATE OR REPLACE PROCEDURE SP003 ( X INT )
+ AS 
+ BEGIN 
+ DELETE FROM T1 WHERE A = X;
+ COMMIT;
+ END;
+
 
 
 
@@ -200,11 +203,12 @@ Ahora se procederá a explicar un poco del proceso de la creación y documentaci
 Para explicar este procedimiento se debe crear la siguiente.
 ::
 
- Create table  t2(
- d int,
- e int,
- f int
+ CREATE TABLE  T2(
+ D INT,
+ E INT,
+ F INT
  );
+
 
 
 **Función Sumatoria**
@@ -213,18 +217,19 @@ La siguiente función es una función almacenada que se encarga de realizar una 
 
 ::
 
- create or replace function SF_001(x integer) 
- return float 
- is  
- resultado float; 
- begin 
- select sum(T1.a * T2.d) 
- into resultado
- from  T1, T2
- where T1.a= x ;
- return resultado; 
- end; 
+ CREATE OR REPLACE FUNCTION SF_001(X INTEGER) 
+ RETURN FLOAT 
+ IS 
+ RESULTADO FLOAT; 
+ BEGIN 
+ SELECT SUM(T1.A * T2.D) 
+ INTO RESULTADO
+ FROM  T1, T2
+ WHERE T1.A= X ;
+ RETURN RESULTADO; 
+ END;
  /
+
 
 
 **Función Suma Valor**
@@ -233,18 +238,19 @@ La siguiente función es una función almacenada que se encarga de realizar una 
 
 ::
  
- create or replace function SF_002(x integer) 
- return float 
- is 
- resultado float; 
- begin 
- select sum(T2.e)  
- into resultado
- from  T2
- where T2.d= x ;
- return resultado; 
- end; 
+ CREATE OR REPLACE FUNCTION SF_002(X INTEGER) 
+ RETURN FLOAT 
+ IS 
+ RESULTADO FLOAT; 
+ BEGIN 
+ SELECT SUM(T2.E) 
+ INTO RESULTADO
+ FROM  T2
+ WHERE T2.D= X ;
+ RETURN RESULTADO; 
+ END; 
  /
+
 
 A continuación se dará una referencia de como documentar las funciones almacenadas en un catálogo de funciones. Además de documentar de manera digital este catálogo también se debe documentar a nivel de la base datos mediante la creación de una tabla específicamente hecha para esta documentación de las funciones almacenadas.
 
@@ -262,10 +268,11 @@ La siguientes tablas se crearán para ayudar al desarrollo y almacenamiento resp
 
 ::
 
- Create table t3(
+ Créate table t3(
  X int ,
  Y int
  );
+
 
  create table bitacora(
  oldX int,
@@ -275,6 +282,7 @@ La siguientes tablas se crearán para ayudar al desarrollo y almacenamiento resp
  fechahora date,
  accion varchar(20)
  );
+
  
  Trigger  Bitacora TR_001
 
@@ -282,20 +290,21 @@ El siguiente trigger tiene como función insertar la información necesaria en l
 
 ::
 
- create or replace trigger TR_001
- after insert or update or delete
- on t3
- for each row
- begin
- IF INSERTING then
- insert into bitacora ( oldX , oldY , newX , newY , fechaHora , accion) values (:old.x , :old.y    , :new.x , :new.y ,  sysdate  , 'insert' );
- ElSIF UPDATING then
- insert into bitacora ( oldX , oldY , newX , newY , fechaHora , accion) values (:old.x , :old.y   , :new.x , :new.y ,  sysdate   , 'update' );
- ELSE
- insert into bitacora ( oldX , oldY , newX , newY , fechaHora , accion) values(:old.x, :old.y,   :new.x,:new.y,  sysdate , 'delete');
- END IF;
- end;
+ CREATE OR REPLACE TRIGGER TR_001
+ AFTER INSERT OR UPDATE OR DELETE
+ ON T3
+ FOR EACH ROW
+ BEGIN
+  IF INSERTING THEN
+   INSERT INTO BITACORA ( OLDX , OLDY , NEWX   ,  NEWY , FECHAHORA , ACCION) VALUES (:OLD.X  ,  :OLD.Y , :NEW.X , :NEW.Y ,  SYSDATE  ,  '       INSERT' );
+ ELSIF UPDATING THEN
+  INSERT INTO BITACORA ( OLDX , OLDY , NEWX ,   NEWY , FECHAHORA , ACCION) VALUES (:OLD.X ,   :OLD.Y , :NEW.X , :NEW.Y ,  SYSDATE   ,   'UPDATE' );
+  ELSE
+   INSERT INTO BITACORA ( OLDX , OLDY , NEWX  ,  NEWY , FECHAHORA , ACCION) VALUES(:OLD.X,   :OLD.Y, :NEW.X,:NEW.Y,  SYSDATE , 'DELETE');
+  END IF;
+ END;
  /
+
 
 A continuación se dará una referencia de como documentar los triggers en un catálogo. Además de documentar de manera digital este catálogo también se debe documentar a nivel de la base datos mediante la creación de una tabla específicamente hecha para esta documentación de  los triggers creados.
 
@@ -309,12 +318,12 @@ Por ejemplo:
 ::
 
  CREATE OR REPLACE PACKAGE BD1 AS 
-   Procedure SP001 (x int , y int  , z int);
-   Procedure SP002 ( x int );
-   Procedure SP003 ( x int );
+   PROCEDURE SP001 (X INT, Y int  , Z INT);
+   PROCEDURE SP002 ( X INT);
+   PROCEDURE SP003 ( X INT);
 
-   SF_001(x integer);
-   SF_002(x integer);
+   SF_001(X INTEGER);
+   SF_002(X INTEGER);
  END BD1;
  /
 
