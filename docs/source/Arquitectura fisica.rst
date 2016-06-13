@@ -1,3 +1,11 @@
+**Estructura de una Base de Datos Oracle**. 
+
+Una Base de Datos Oracle tiene una estructura física y una estructura lógica que se mantienen separadas, pero que son complemento una de la otra para poder trabajar. Las bases de datos de Oracle usan un modelo relacional.
+
+• La estructura física se corresponde a los ficheros del sistema operativo: de datos (datafiles), de redo log (rollback) y de control (controlfiles). 
+• La estructura lógica está formada por los tablespace y los objetos de un esquema de BD (tablas, vistas, índices,...). 
+
+
 Arquitectura física
 ========================
 Para la arquitectura física de la base de datos este manual se basará en la arquitectura física del gestor de bases de bases de datos Oracle esto porque se decidió que para la explicación de todo el diseño e implementación de la base de los datos se va a realizar con el gestor de bases de datos Oracle. A continuación se explica la forma en que se encontrará distribuida la arquitectura física, así como también  pasos a seguir para crear nuevos archivos log iniciales. Además de explicar cómo realizar multiplicación y mantenimiento de los grupos y miembros redo log online. Finalmente se mencionan algunos problemas típicos relacionados a la arquitectura física así como también recomendaciones para los mismos.
