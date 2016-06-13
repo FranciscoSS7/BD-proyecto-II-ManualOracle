@@ -347,3 +347,17 @@ Primero se arranca la B.D. por pasos hasta realizar un:
 -	 ``ALTER DATABASE DISMOUNT``
 -	 ``ALTER DATABASE CLOSE``
 
+
+**Estándar de documentación**
+-------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+A continuación se dan las pautas para realizar la documentación de la arquitectura física.
+ 
+1.	Realizar un diagrama en donde se aprecie claramente la estructura física de la base de datos.
+2.	Especificar cada uno de los ficheros físicos junto con el  espacio de la memoria con que cuentan  cada uno de ellos.
+3.	Especificar los procesos de usuario y explicar en qué consiste cada uno de ellos.
+4.	Documentar los Grupos redo log online y en ellos especificar cada uno de sus miembros redo log. Así como también se debe actualizar esta parte cada vez que se dé la creación de un miembro redo log.
+5.	Documentar los archivos de control, su contenido y como fue designada la multiplexación de estos archivos. También si se crean archivos de control nuevos después de crear la base de datos estos deben ser documentados.
+6.	Documentar los  archivos de datos y su contenido.
+7.	Finalmente en caso de agregar nuevos ficheros físicos documentar los cambios hechas para mantener está parte de la documentación de la base datos actualizada.
