@@ -110,6 +110,8 @@ Para ofrecer más flexibilidad, Oracle permite evitar las restricciones de la se
 
 Estas mismas reglas aplican a los nombres de los objetos de base de datos como tablas, vistas y procedimientos, con una regla adicional: a menos que se encierren entre comillas los nombres de estos objetos, Oracle los mantendrá en mayúsculas.
 
+También se buscará la consistencia en el empleo de mayúsculas y minúsculas, lo que facilitará la elaboración de herramientas de administración. En general, todo el código se escribirá con mayúsculas con excepción a  los textos entre comillas.
+
 **Procedimientos Almacenados**
 -------------------------------
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -311,8 +313,8 @@ Por ejemplo:
    Procedure SP002 ( x int );
    Procedure SP003 ( x int );
 
-   function SF_001(x integer);
-   function SF_002(x integer);
+   SF_001(x integer);
+   SF_002(x integer);
  END BD1;
  /
 
