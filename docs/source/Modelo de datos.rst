@@ -259,15 +259,6 @@ Ejemplos:
 
 En este caso para mantener la integridad referencial no se debe eliminar el padre.
 
-
-1.	Realizar un análisis de requisitos mediante una elicitación de requisitos del sistema.
-2.	Conocer las reglas de negocio entre las entidades.
-3.	Diseño conceptual  de una base de datos.
-
-
-.. figure:: nstatic/imgModeloDatos11.jpg
-   :align: center
-
 **5.4. Regla de integridad de dominio**
 
 La regla de integridad de dominio está relacionada, como su nombre indica, con la noción de dominio. Esta regla establece dos condiciones.
